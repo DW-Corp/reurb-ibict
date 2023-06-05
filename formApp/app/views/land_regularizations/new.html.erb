@@ -1,0 +1,29 @@
+<h1>New Land Regularization</h1>
+
+<%= form_with model: @land_regularization, local: true do |form| %>
+  <% if @land_regularization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@land_regularization.errors.count, "error") %> prohibited this land_regularization from being saved:</h2>
+
+      <ul>
+        <% @land_regularization.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :state %>
+    <%= form.select :state, options_for_select(['State A', 'State B', 'State C']) %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :city %>
+    <%= form.select :city, options_for_select(['City A', 'City B', 'City C']) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

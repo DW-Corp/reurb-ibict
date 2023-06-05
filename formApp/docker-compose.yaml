@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  db:
+    user: "${UID}:${GID}"
+    image: postgres:15.2-bullseye
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    user: "${UID}:${GID}"
+    command: bundle exec rails server -b 0.0.0.0
+    volumes:
+      - .:/app
+      - bundle_data:/usr/local/bundle
+      - node_modules_data:/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+  bundle_data:
+  node_modules_data:

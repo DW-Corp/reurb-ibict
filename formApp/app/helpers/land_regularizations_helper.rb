@@ -1,0 +1,2 @@
+module LandRegularizationsHelper
+end
